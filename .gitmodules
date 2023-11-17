@@ -1,0 +1,3 @@
+[submodule "Dubi_Singleton"]
+	path = Dubi_Singleton
+	url = https://github.com/korrecktfort/Dubi_Singleton
