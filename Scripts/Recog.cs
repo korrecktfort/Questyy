@@ -15,6 +15,8 @@ public class Recog : MonoBehaviour
 
     [SerializeField] private KeywordAction[] keywordActions = default;
     
+    
+
     private void Start()
     {
         foreach(KeywordAction keywordAction in keywordActions)
