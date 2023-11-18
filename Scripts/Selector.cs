@@ -45,20 +45,35 @@ public class Selector : Singleton<Selector>
     }
 
     private void OnSelect()
-    {
-        /// Get right hand device pointing direction
-        Vector3 rayDir = Quaternion.LookRotation(rot * Vector3.forward) * Vector3.forward;
-        Ray ray = new Ray(pos, rayDir);
+    {        
         float selectionDistance = referenceResource.selectionDistance;
         LayerMask layerMask = referenceResource.selectionLayerMask;
 
-        if(Physics.Raycast(ray, out RaycastHit hit, selectionDistance, layerMask))
+        if(Physics.Raycast(RightHandPointerRay(), out RaycastHit hit, selectionDistance, layerMask))
         {
             if (hit.collider == null)
                 return;
 
             Recog.Instance.SetSelected(hit.collider.gameObject);       
         }
+    }
 
+    public Vector3 GetRightPointAtPosition()
+    {
+        float selectionDistance = Instance.referenceResource.selectionDistance;
+        LayerMask layerMask = Instance.referenceResource.selectionLayerMask;
+
+        if (Physics.Raycast(Instance.RightHandPointerRay(), out RaycastHit hit, selectionDistance, layerMask))
+            return hit.point;    
+
+        return Vector3.zero;
+        
+    }
+
+    Ray RightHandPointerRay()
+    {
+        /// Get right hand device pointing direction
+        Vector3 rayDir = Quaternion.LookRotation(rot * Vector3.forward) * Vector3.forward;
+        return new Ray(pos, rayDir);
     }
 }

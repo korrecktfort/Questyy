@@ -48,4 +48,7 @@ MonoBehaviour:
   selectionLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  selectionDistance: 100
+  selectionDistance: 1000
+  pointAtLayerMask:
+    serializedVersion: 2
+    m_Bits: 1025
